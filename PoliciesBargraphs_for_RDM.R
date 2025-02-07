@@ -14,7 +14,7 @@ levels(RDMPolicy$DMP)<-c('No mention', 'If required by funder', 'Encouraged', 'R
 g1<-ggplot(RDMPolicy, aes(DMP)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention', 'If required by funder', 'Encouraged', 'Required', 'Logged or signed off'))	+
+  scale_x_discrete(labels=c('No mention', 'If required by funder', 'Encouraged', 'Required', 'Logged or signed off'),drop = FALSE)	+
   labs(title="Data Management Plan",
        x="DMP requirement",
        y="Percent") +
@@ -29,12 +29,12 @@ levels(RDMPolicy$'Data deposit')<-c('No mention', 'Mentioned', 'Encouraged', 'Re
 g2<-ggplot(RDMPolicy, aes(`Data deposit`)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention', 'Mentioned', 'Encouraged', 'Required', 'Checked'))	+
+  scale_x_discrete(labels=c('No mention', 'Mentioned', 'Encouraged', 'Required', 'Checked'),drop = FALSE)	+
   labs(title="Deposit in a repository",
        x="Repository deposit",
        y="Percent") +
   theme_bw() +
-  theme(panel.grid = element_blank(), axis.title.x = element_blank())
+  theme(panel.grid = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank())
 
 #Minimum length of time to keep data
 RDMPolicy$`Min Time` <- as.factor(RDMPolicy$`Min Time`)
@@ -44,12 +44,12 @@ levels(RDMPolicy$`Min Time`)<-c('No mention',	'In accordance with policy',	'<5 y
 g3<-ggplot(RDMPolicy, aes(`Min Time`)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention',	'In accordance with policy', '<5 years', '5>= years', 'Indefinitely'))	+
+  scale_x_discrete(labels=c('No mention',	'In accordance with policy', '<5 years', '5>= years', 'Indefinitely'),drop = FALSE)	+
   labs(title="Minimum length of time to keep data",
        x="Time",
        y="Percent") +
   theme_bw() +
-  theme(panel.grid = element_blank(), axis.title.x = element_blank())
+  theme(panel.grid = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank())
 
 #Open Licenses
 RDMPolicy$`Data licenses` <- as.factor(RDMPolicy$`Data licenses`)
@@ -59,7 +59,7 @@ levels(RDMPolicy$`Data licenses`)<-c('No mention', 'Do not give away rights', 'A
 g4<-ggplot(RDMPolicy, aes(`Data licenses`)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention', 'Do not give away rights', 'Any license', 'Open license', 'Only CC-BY or similar'))	+
+  scale_x_discrete(labels=c('No mention', 'Do not give away rights', 'Any license', 'Open license', 'Only CC-BY or similar'),drop = FALSE)	+
   labs(title="Data Licensing",
        x="License",
        y="Percent") +
@@ -74,11 +74,11 @@ levels(RDMPolicy$`Software deposit`)<-c('No mention',	'Included as data',	'Encou
 g5<-ggplot(RDMPolicy, aes(`Software deposit`)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention',	'Included as data',	'Encouraged',	'Required', 'Repository snapshot'))	+
+  scale_x_discrete(labels=c('No mention',	'Included as data',	'Encouraged',	'Required', 'Repository snapshot'),drop = FALSE)	+
   labs(title="Depositing Software in a repository",
        y="Percent") +
   theme_bw() +
-  theme(panel.grid = element_blank(), axis.title.x = element_blank())
+  theme(panel.grid = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank())
 
 #Timeframe for depositing
 RDMPolicy$`Deposit timeframe` <- as.factor(RDMPolicy$`Deposit timeframe`)
@@ -89,12 +89,12 @@ levels(RDMPolicy$`Deposit timeframe`)<-c('No mention', 'Minimum delay', 'Publica
 g6<-ggplot(RDMPolicy, aes(`Deposit timeframe`)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention', 'Minimum delay', 'Publication (with embargo)', 'Publication', 'Collection/ASAP'))	+
+  scale_x_discrete(labels=c('No mention', 'Minimum delay', 'Publication (with embargo)', 'Publication', 'Collection/ASAP'),drop = FALSE)	+
   labs(title="Deposit timeframe",
        x="Policy",
        y="Percent") +
   theme_bw() +
-  theme(panel.grid = element_blank(), axis.title.x = element_blank())
+  theme(panel.grid = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank())
 
 #Data Availability Requirement
 
@@ -106,7 +106,7 @@ levels(RDMPolicy$`DAS`)<-c('No mention', 'Encouraged', 'Required', 'with DOI', '
 g7<-ggplot(RDMPolicy, aes(`DAS`)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention', 'Encouraged', 'Required', 'with DOI', 'Contains link'))	+
+  scale_x_discrete(labels=c('No mention', 'Encouraged', 'Required', 'with DOI', 'Contains link'),drop = FALSE)	+
   labs(title="Data Availability Statement",
        x="`Policy`",
        y="Percent") +
@@ -117,18 +117,17 @@ g7<-ggplot(RDMPolicy, aes(`DAS`)) +
 RDMPolicy$`Data catalogue` <- as.factor(RDMPolicy$`Data catalogue`)
 RDMPolicy$`Data catalogue`
 levels(RDMPolicy$`Data catalogue`)<-c('No mention',	'Mentioned',	'Encouraged',	'Required',	'On collection'
-                                      
 )
 
 g8<-ggplot(RDMPolicy, aes(`Data catalogue`)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention',	'Mentioned',	'Encouraged',	'Required',	'On collection'))	+
+  scale_x_discrete(labels=c('No mention',	'Mentioned',	'Encouraged',	'Required',	'On collection'),drop = FALSE)	+
   labs(title="Creation of record in a Data Catalogue",
        x="`Policy`",
        y="Percent") +
   theme_bw() +
-  theme(panel.grid = element_blank(), axis.title.x = element_blank())
+  theme(panel.grid = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank())
 
 #Scope of who the policy applies to
 RDMPolicy$Who <- as.factor(RDMPolicy$Who)
@@ -140,12 +139,12 @@ levels(RDMPolicy$Who)<-c('No mention','PI only',	'All Staff',	'Staff & PGRs',	'E
 g9<-ggplot(RDMPolicy, aes(Who)) + 
   geom_bar(aes(y = (after_stat(count))/sum(after_stat(count)))) + 
   scale_y_continuous(labels=scales::percent, limits=c(0, 1)) +
-  scale_x_discrete(labels=c('No mention',	'PI only', 'All Staff', 'Staff & PGRs',	'Everybody'))	+
+  scale_x_discrete(labels=c('No mention',	'PI only', 'All Staff', 'Staff & PGRs',	'Everybody'),drop = FALSE)	+
   labs(title="Who does the policy apply to?",
        x="`Who`",
        y="Percent") +
   theme_bw() +
-  theme(panel.grid = element_blank(), axis.title.x = element_blank())
+  theme(panel.grid = element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank())
 #Create a 3 x 3 plot of graphs. Layout still needs work.
 
 (g1 | g2 | g3) /
