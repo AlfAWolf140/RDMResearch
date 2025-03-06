@@ -7,7 +7,7 @@ library(scales)
 library(readr)
 library(tidyverse)
 
-RDMPolicyAdj <- read_csv("Adj_proportions.csv")
+RDMPolicyAdj <- read_csv("Data/Adj_proportions.csv")
 RDMPolicyAdj2 <- RDMPolicyAdj %>%
   filter(Date >=2015)
 
