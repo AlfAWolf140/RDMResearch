@@ -3,7 +3,7 @@ install.packages("jmuOutlier")
 library(readr)
 library(jmuOutlier)
 
-RDMPolicy <- read_csv("PoliciesData_UK_2024.csv")
+RDMPolicy <- read_csv("Policies.csv")
 View(RDMPolicy)
 #RDMPolicy = RDMPolicy[-61,] 
 #View(RDMPolicy)
