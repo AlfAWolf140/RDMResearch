@@ -2,7 +2,7 @@
 library(readr)
 library(rstatix)
 
-RDMPolicy <- read_csv("Data/PoliciesData_UK_2024.csv")
+RDMPolicy <- read_csv("Data/Policies.csv")
 View(RDMPolicy)
 
 
