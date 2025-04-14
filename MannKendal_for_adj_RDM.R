@@ -6,8 +6,9 @@ library(ggplot2)
 library(scales)
 library(readr)
 library(tidyverse)
+library(patchwork)
 
-RDMPolicyAdj <- read_csv("Data/Adj_proportions.csv")
+RDMPolicyAdj <- read_csv("Adj_proportions.csv")
 RDMPolicyAdj2 <- RDMPolicyAdj %>%
   filter(Date >=2015)
 
@@ -55,7 +56,7 @@ trend_line_OpenMK
 # Create a trend line plot
 ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Open), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_OpenMK), color = "red") +
+  #geom_line(aes(x = years, y = trend_line_OpenMK), color = "red") +
   labs(x = "Year", y = "Open Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -65,9 +66,9 @@ ggplot() +
 trend_line_DiscoverableMK  <- predict(loess(RDMPolicyAdj2$Discoverable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph1<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Discoverable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_DiscoverableMK), color = "red") +
+ #geom_line(aes(x = years, y = trend_line_DiscoverableMK), color = "red") +
   labs(x = "Year", y = "Discoverable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -77,9 +78,9 @@ ggplot() +
 trend_line_FindableMK  <- predict(loess(RDMPolicyAdj2$Findable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph2<-  ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Findable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_FindableMK), color = "red") +
+  #geom_line(aes(x = years, y = trend_line_FindableMK), color = "red") +
   labs(x = "Year", y = "Findable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -89,9 +90,9 @@ ggplot() +
 trend_line_AccessibleMK  <- predict(loess(RDMPolicyAdj2$Accessible ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph3<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Accessible), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_AccessibleMK), color = "red") +
+  #geom_line(aes(x = years, y = trend_line_AccessibleMK), color = "red") +
   labs(x = "Year", y = "Accessible Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -101,9 +102,9 @@ ggplot() +
 trend_line_AvailableMK   <- predict(loess(RDMPolicyAdj2$Available ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph4<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Available), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_AvailableMK ), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_AvailableMK ), color = "red") +
   labs(x = "Year", y = "Available Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -112,9 +113,9 @@ ggplot() +
 trend_line_AccurateMK    <- predict(loess(RDMPolicyAdj2$Accurate ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph5<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Accurate), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_AccurateMK  ), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_AccurateMK  ), color = "red") +
   labs(x = "Year", y = "Accurate Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -124,9 +125,9 @@ ggplot() +
 trend_line_CompleteMK     <- predict(loess(RDMPolicyAdj2$Complete ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph6<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Complete), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_CompleteMK), color = "red") +
+  #geom_line(aes(x = years, y = trend_line_CompleteMK), color = "red") +
   labs(x = "Year", y = "Complete Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -136,9 +137,9 @@ ggplot() +
 trend_line_AuthenticMK     <- predict(loess(RDMPolicyAdj2$Authentic ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph7<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Authentic), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_AuthenticMK), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_AuthenticMK), color = "red") +
   labs(x = "Year", y = "Authentic Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -148,9 +149,9 @@ ggplot() +
 trend_line_ReliableMK      <- predict(loess(RDMPolicyAdj2$Reliable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph8<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Reliable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_ReliableMK ), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_ReliableMK ), color = "red") +
   labs(x = "Year", y = "Reliable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -160,9 +161,9 @@ ggplot() +
 trend_line_ValuableMK <- predict(loess(RDMPolicyAdj2$Valuable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph9<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Valuable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_ValuableMK), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_ValuableMK), color = "red") +
   labs(x = "Year", y = "Valuable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -172,9 +173,9 @@ ggplot() +
 trend_line_IdentifiableMK <- predict(loess(RDMPolicyAdj2$Identifiable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph10<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Identifiable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_IdentifiableMK), color = "red") +
+  #geom_line(aes(x = years, y = trend_line_IdentifiableMK), color = "red") +
   labs(x = "Year", y = "Identifiable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -183,9 +184,9 @@ ggplot() +
 trend_line_RetrievableMK  <- predict(loess(RDMPolicyAdj2$Retrievable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph11<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Retrievable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_RetrievableMK ), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_RetrievableMK ), color = "red") +
   labs(x = "Year", y = "Retrievable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -195,9 +196,9 @@ ggplot() +
 trend_line_TimelyMK  <- predict(loess(RDMPolicyAdj2$Timely ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph12<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Timely), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_TimelyMK  ), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_TimelyMK  ), color = "red") +
   labs(x = "Year", y = "Timely Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -207,9 +208,9 @@ ggplot() +
 trend_line_FAIRMK   <- predict(loess(RDMPolicyAdj2$FAIR ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph13<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$FAIR), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_FAIRMK  ), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_FAIRMK  ), color = "red") +
   labs(x = "Year", y = "FAIR Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -219,9 +220,9 @@ ggplot() +
 trend_line_ReuseableMK    <- predict(loess(RDMPolicyAdj2$Reuseable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph14<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Reuseable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_ReuseableMK ), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_ReuseableMK ), color = "red") +
   labs(x = "Year", y = "Reuseable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
@@ -231,22 +232,16 @@ ggplot() +
 trend_line_InteroperableMK    <- predict(loess(RDMPolicyAdj2$Interoperable ~ years))
 
 # Create a trend line plot
-ggplot() +
+graph15<- ggplot() +
   geom_point(aes(x = years, y = RDMPolicyAdj2$Interoperable), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_InteroperableMK), color = "red") +
+ # geom_line(aes(x = years, y = trend_line_InteroperableMK), color = "red") +
   labs(x = "Year", y = "Interoperable Occurance") +
   scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
   scale_y_continuous(limits = c(0, 105)) +
   theme_classic()
 
-
-
-
-# Create a trend line plot
-ggplot() +
-  geom_point(aes(x = years, y = adj), color = "blue") +
-  geom_line(aes(x = years, y = trend_line_OpenMK), color = "red") +
-  labs(x = "Year", y = "Recognition Occurance") +
-  scale_x_continuous(breaks = seq(from = floor(min(years)), to = ceiling(max(years)), by = 2)) +
-  scale_y_continuous(limits = c(0, 1), labels = label_percent()) +
-  theme_classic()
+(graph1 | graph2 | graph3) /
+(graph4 | graph5 | graph6) /  
+(graph7 | graph8 | graph9) /  
+(graph10 | graph11 | graph12) /
+  (graph13 | graph14 | graph15)
