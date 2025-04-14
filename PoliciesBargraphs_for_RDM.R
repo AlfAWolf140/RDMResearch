@@ -3,7 +3,7 @@ library(tidyverse)
 library(readr)
 library(ggplot2)
 
-RDMPolicy <- read_csv("Data/PoliciesData_UK_2024.csv")
+RDMPolicy <- read_csv("Data/Policies.csv")
 View(RDMPolicy)
 
 #Strength of DMP requirement barplot
